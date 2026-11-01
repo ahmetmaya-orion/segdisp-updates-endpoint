@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "SegDisp update feed",
+  "description": "Shared validation for Pro/Lite stable and test update feeds.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "download_url", "message"],
+  "properties": {
+    "version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "description": "Exactly X.Y.Z, for example 1.0.4. No prefixes, missing numbers, or extra dots."
+    },
+    "download_url": {
+      "type": "string",
+      "format": "uri",
+      "pattern": "^https://[^\\s/\\[\\]<>\"?#]+(?:[/?#][^\\s<>\"\\[\\]]*)?$",
+      "description": "A plain absolute HTTPS URL, not Markdown link syntax."
+    },
+    "message": {
+      "type": "string",
+      "description": "Release notice. An empty string skips the notice. Use escaped newline characters for line breaks."
+    }
+  }
+}
